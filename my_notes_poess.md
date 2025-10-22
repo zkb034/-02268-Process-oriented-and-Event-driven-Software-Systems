@@ -20,7 +20,6 @@
 5. **Validator Device Maintenance** — heartbeat monitoring; create job when device is down.
 6. **Disruption Response** — service alert in → notify users and open refund window.
 
-> Keep diagrams one page each — Verb+Noun labels — clear splits/joins — left→right.
 
 ---
 
@@ -39,29 +38,13 @@
 * Transit status — e.g., Realtime trip alerts/updates.
 * Weather — rain/snow intensity.
 
-**Domain events (use consistent names):**
-`PaymentAuthorized`, `PaymentFailed`, `TicketIssued`, `TicketScanned`, `ScanValid`, `ScanInvalid`, `InspectionStarted`, `FineIssued`, `AppealSubmitted`, `RefundRequested`, `RefundApproved`, `ServiceDisruption`, `ValidatorHeartbeat`.
 
-**Three simple CEP rules:**
-
-1. **Missing Heartbeat** — if no `ValidatorHeartbeat` for 5 min per device → emit `DeviceDown`.
-2. **Invalid Spike** — ≥5 `ScanInvalid` at the same stop within 2 min → emit `InspectionNeeded`.
-3. **Disruption Trigger** — on transit *Alert(line=X)* → emit `RefundWindowOpen(line=X, t=30m)`.
 
 ---
 
-## 5) Integration sketch — how pieces talk
-
-* **CEP → PAIS** — on pattern, send *Correlate Message* to BPMN (key = `ticketId`/`deviceId`).
-* **PAIS → CEP** — service tasks emit domain events (*TicketIssued*, *FineIssued*, *RefundApproved*).
-* **PAIS → Devices** — mock via MQTT/HTTP — e.g., display *RefundEligible*.
-
----
-
-## 6) Improvements — small changes that matter
+## 5) Improvements — small changes that matter
 
 * **Task elimination** — auto‑approve micro‑refunds under a small threshold.
 * **Parallelism** — issue QR and send receipt at the same time.
 * **Resequence** — validate first, enrich later.
-* **Triage** — fast lane for disruption‑tagged cases.
 
