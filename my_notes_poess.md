@@ -2,7 +2,7 @@
 
 ---
 
-## 1) Simple analysis toolkit to find real improvements
+## 1) Simple analysis to find real improvements
 
 * **Event list** write 15–25 key domain events (e.g., *PaymentAuthorized*, *TicketIssued*, *TicketScanned*, *ScanInvalid*, *ServiceDisruption*, *ValidatorHeartbeat*).
 * **SIPOC** Suppliers (banks, DOT/DSB) : Inputs (payment token, QR/NFC) : Process : Outputs (valid ticket, fine/refund) : Customers (riders, back‑office).
