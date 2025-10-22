@@ -1,8 +1,8 @@
-# Maintenance of Transport Tickets — Team Notes
+# Maintenance of Transport Tickets  Team Notes
 
 ---
 
-## 1) Simple analysis toolkit — to find real improvements
+## 1) Simple analysis toolkit to find real improvements
 
 * **Event list** — write 15–25 key domain events (e.g., *PaymentAuthorized*, *TicketIssued*, *TicketScanned*, *ScanInvalid*, *ServiceDisruption*, *ValidatorHeartbeat*).
 * **SIPOC** — Suppliers (banks, DOT/DSB) — Inputs (payment token, QR/NFC) — Process — Outputs (valid ticket, fine/refund) — Customers (riders, back‑office).
@@ -11,7 +11,7 @@
 
 ---
 
-## 2) The six processes — one‑liners we can model
+## 2) The six processes one‑liners we can model
 
 1. **Ticket Purchase & Issue** — user pays, we issue QR/pass; handle fail/timeout.
 2. **Ticket Validation** — scan QR/NFC; accept or deny; log reason.
@@ -23,7 +23,7 @@
 
 ---
 
-## 3) Minimal models — just enough to show competence
+## 3) Minimal models just enough to show competence
 
 * **BPMN** — Purchase; Validation; Refund. Use message events + simple service tasks + XOR gateways.
 * **DCR** — Inspection case: *CheckTicket* → if invalid then *CreateCase* (response) — *AcceptAppeal* excludes *IssueFine* — *RejectAppeal* includes *IssueFine*.
@@ -31,7 +31,7 @@
 
 ---
 
-## 4) External events & CEP — keep rules tiny
+## 4) External events & CEP
 
 **Event sources (pick two):**
 
@@ -42,7 +42,7 @@
 
 ---
 
-## 5) Improvements — small changes that matter
+## 5) Improvements small changes that matter
 
 * **Task elimination** — auto‑approve micro‑refunds under a small threshold.
 * **Parallelism** — issue QR and send receipt at the same time.
